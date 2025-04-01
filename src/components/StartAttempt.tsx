@@ -5,8 +5,10 @@ export function StartAttempt(): React.JSX.Element {
     const [attempts, setAttempts] = useState<number>(4);
     const [inProgress, setInProgress] = useState<boolean>(false);
     function startQuiz() {
-        if (attempts > 0) setInProgress(true);
-        setAttempts(attempts - 1);
+        if (attempts > 0) {
+            setInProgress(true);
+            setAttempts(attempts - 1);
+        }
     }
     function stopQuiz() {
         setInProgress(false);
@@ -23,7 +25,7 @@ export function StartAttempt(): React.JSX.Element {
             <Button onClick={stopQuiz} disabled={!inProgress}>
                 Stop Quiz
             </Button>
-            <Button onClick={addAttempt} disabled={!inProgress}>
+            <Button onClick={addAttempt} disabled={inProgress}>
                 Mulligan
             </Button>
         </div>
